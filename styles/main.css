@@ -95,6 +95,11 @@ body::after {
 }
 
 /* ──── 3. TYPOGRAPHY ──── */
+h1, h2, h3, h4, h5, h6, .nav-logo, .footer-logo, .section-title, .combo-title, .product-name {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.03em;
+}
+
 .text-gold {
   background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
   -webkit-background-clip: text;
@@ -275,10 +280,10 @@ body::after {
 }
 
 .navbar.scrolled {
-  background: rgba(7, 7, 7, 0.92);
+  background: rgba(7, 7, 7, 0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: var(--border-gold);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
   padding: 0.7rem 2rem;
 }
 
@@ -498,12 +503,15 @@ body::after {
 }
 
 .product-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: rgba(14, 14, 14, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--r-2xl);
   overflow: hidden;
   position: relative;
   transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.02);
 }
 
 .product-card::before {
@@ -631,12 +639,15 @@ body::after {
 .combo-card {
   max-width: 900px;
   margin: 0 auto;
-  background: linear-gradient(135deg, rgba(201, 168, 76, 0.06) 0%, rgba(201, 168, 76, 0.02) 100%);
-  border: 1px solid rgba(201, 168, 76, 0.25);
+  background: rgba(14, 14, 14, 0.45);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(201, 168, 76, 0.15);
   border-radius: var(--r-2xl);
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.05);
 }
 
 .combo-card::before {
@@ -1086,12 +1097,15 @@ body::after {
 .form-wrapper {
   max-width: 580px;
   margin: 0 auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border-gold);
+  background: rgba(14, 14, 14, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 168, 76, 0.15);
   border-radius: var(--r-2xl);
   padding: 2.5rem;
   position: relative;
   transition: border-color 0.4s, box-shadow 0.4s;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.04);
 }
 
 .form-wrapper::before {
@@ -1453,3 +1467,154 @@ select.form-input option {
     font-size: 0.75rem;
   }
 }
+
+/* ──── SCROLL PROGRESS BAR ──── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold));
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.6);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+/* ──── SUCCESS TRACKER ──── */
+.success-tracker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 480px;
+  margin: 2rem auto 1.5rem;
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+.tracker-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  gap: 0.5rem;
+}
+
+.step-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: all 0.4s ease;
+}
+
+.step-text {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tracker-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  margin-top: -1.5rem; /* Align with dots middle */
+  z-index: 1;
+  transition: background 0.4s ease;
+}
+
+/* Active and Completed States */
+.tracker-step.completed .step-dot {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  border-color: var(--gold);
+  color: #000;
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.4);
+}
+
+.tracker-step.completed .step-text {
+  color: var(--gold-light);
+}
+
+.tracker-line.completed {
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+
+.tracker-step.active .step-dot {
+  background: #000;
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
+}
+
+.tracker-step.active .step-text {
+  color: #fff;
+  font-weight: 700;
+}
+
+.tracker-line.active {
+  background: linear-gradient(90deg, var(--gold), var(--border));
+}
+
+/* Pulse effect for WhatsApp step */
+.step-dot.pulse {
+  animation: step-pulse 2s infinite ease-in-out;
+}
+
+@keyframes step-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px 5px rgba(201, 168, 76, 0.3);
+  }
+}
+
+/* ──── SHIMMER BUTTON EFFECT ──── */
+.btn-primary, .btn-gold, .btn-submit {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after, .btn-gold::after, .btn-submit::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.1) 48%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 52%,
+    transparent 55%
+  );
+  transform: rotate(-45deg);
+  transition: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after, .btn-gold:hover::after, .btn-submit:hover::after {
+  animation: btn-shimmer 1.5s infinite;
+  opacity: 1;
+}
+
+@keyframes btn-shimmer {
+  0% { transform: translate(-30%, -30%) rotate(-45deg); }
+  100% { transform: translate(30%, 30%) rotate(-45deg); }
+}
+

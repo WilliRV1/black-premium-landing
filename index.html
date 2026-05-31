@@ -15,7 +15,21 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Open Graph / Facebook (SEO) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://black-premium-landing.vercel.app/">
+    <meta property="og:title" content="Black Premium | Carblock Dorado & Wipesblock">
+    <meta property="og:description" content="Descubre el lujo y la limpieza definitiva para tu vehículo con Carblock Dorado y Wipesblock. Envío gratis y pago contra entrega en toda Colombia.">
+    <meta property="og:image" content="https://black-premium-landing.vercel.app/media/Fotos/carblock-primer-plano.jpg">
+
+    <!-- Twitter Card (SEO) -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://black-premium-landing.vercel.app/">
+    <meta property="twitter:title" content="Black Premium | Carblock Dorado & Wipesblock">
+    <meta property="twitter:description" content="Descubre el lujo y la limpieza definitiva para tu vehículo con Carblock Dorado y Wipesblock. Envío gratis y pago contra entrega en toda Colombia.">
+    <meta property="twitter:image" content="https://black-premium-landing.vercel.app/media/Fotos/carblock-primer-plano.jpg">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -54,6 +68,9 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
 
     <!-- 0. ANNOUNCEMENT BAR -->
     <div class="announcement-bar">
@@ -494,8 +511,30 @@
 
                 <div class="success-msg" id="success-msg">
                     <div class="success-icon">✅</div>
-                    <h3>¡Redirigiendo a WhatsApp!</h3>
-                    <p>Enviaremos el mensaje con los detalles de tu pedido. Si no se abre automáticamente, <a href="#" style="color: var(--gold); text-decoration: underline;" onclick="document.getElementById('btn-submit').click()">haz clic aquí</a>.</p>
+                    <h3>¡Pedido Guardado con Éxito!</h3>
+                    <p style="margin-bottom: 1.5rem;">Estamos procesando tu orden y preparándolo todo para redirigirte a WhatsApp.</p>
+                    
+                    <!-- Tracker de progreso del pedido -->
+                    <div class="success-tracker">
+                        <div class="tracker-step completed">
+                            <div class="step-dot">✓</div>
+                            <span class="step-text">Pedido Recibido</span>
+                        </div>
+                        <div class="tracker-line completed"></div>
+                        <div class="tracker-step completed">
+                            <div class="step-dot">✓</div>
+                            <span class="step-text">Guardado en Sistema</span>
+                        </div>
+                        <div class="tracker-line active"></div>
+                        <div class="tracker-step active">
+                            <div class="step-dot pulse">📲</div>
+                            <span class="step-text">Abriendo WhatsApp</span>
+                        </div>
+                    </div>
+
+                    <p class="tracker-note" style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-muted);">
+                        Si la ventana de WhatsApp no se abre automáticamente en unos segundos, <a href="#" id="fallback-wa-link" style="color: var(--gold); text-decoration: underline; font-weight: 700;">haz clic aquí para enviar el mensaje manualmente</a>.
+                    </p>
                 </div>
             </div>
         </div>

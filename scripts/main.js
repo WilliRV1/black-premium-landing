@@ -22,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScroll = current;
   }, { passive: true });
 
+  /* ──── DYNAMIC SCROLL PROGRESS BAR ──── */
+  const scrollProgress = document.getElementById('scroll-progress');
+  if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+      scrollProgress.style.width = progress + '%';
+    }, { passive: true });
+  }
+
   /* ──── HERO ENTRANCE ──── */
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
   heroTl
@@ -204,7 +214,20 @@ document.addEventListener('DOMContentLoaded', () => {
       formData.append('Producto', producto);
       formData.append('Fecha', new Date().toLocaleString());
 
-      // Disparar Evento de Purchase en el Pixel de Meta y TikTok
+      // 1. Enviar datos a Formspree en segundo plano (Fetch POST)
+      const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        console.warn('Formspree responded with status:', response.status);
+      }
+
+      // 2. Disparar Evento de Purchase en el Pixel de Meta y TikTok
       let val = producto.includes("Combo") ? 169900 : 99900;
       
       if (typeof fbq === 'function') {
@@ -227,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
-      // Hide form, show success
+      // 3. Ocultar formulario, mostrar modal de éxito con tracker
       form.style.display = 'none';
       const trust = document.querySelector('.form-trust');
       if (trust) trust.style.display = 'none';
@@ -235,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const successMsg = document.getElementById('success-msg');
       if (successMsg) successMsg.style.display = 'flex';
 
-      // Animate success
+      // Animar entrada del mensaje de éxito
       gsap.from('#success-msg', {
         scale: 0.8,
         opacity: 0,
@@ -243,18 +266,29 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'back.out(1.5)'
       });
 
-      // Build WhatsApp URL
+      // 4. Construir mensaje y URL de redirección a WhatsApp
       const wpMessage = `*NUEVO PEDIDO DESDE LA WEB*\n\n*Producto:* ${producto}\n*Cliente:* ${nombres} ${apellidos}\n*Teléfono:* ${telefono}\n*Ciudad:* ${ciudad}, ${departamento}\n*Dirección:* ${direccion}\n${notas ? '*Notas:* ' + notas + '\n' : ''}\n\n*Pago contra entrega.* ¡Hola! Confirmo mi pedido.`;
       const wpUrl = `https://wa.me/573136336446?text=${encodeURIComponent(wpMessage)}`;
+      
+      // Asignar al botón de respaldo manual
+      const fallbackLink = document.getElementById('fallback-wa-link');
+      if (fallbackLink) {
+        fallbackLink.href = wpUrl;
+        fallbackLink.target = '_blank';
+      }
+
+      // 5. Redirigir a WhatsApp automáticamente
       setTimeout(() => {
         window.open(wpUrl, '_blank');
-      }, 1500);
+      }, 2000);
       
     } catch (error) {
-      alert('Hubo un error al enviar el pedido. Serás redirigido a WhatsApp para completarlo manualmente.');
-      // En caso de error, igual enviamos al usuario al WhatsApp
-      const whatsappNumber = "573136336446";
-      window.open(`https://wa.me/${whatsappNumber}?text=Hola,%20tuve%20un%20problema%20con%20la%20página%20pero%20quiero%20hacer%20un%20pedido.`, '_blank');
+      console.error('Error al enviar pedido:', error);
+      alert('Hubo un inconveniente al registrar el pedido en la base de datos. Serás redirigido a WhatsApp para gestionarlo directamente.');
+      
+      const wpMessageFallback = `*NUEVO PEDIDO (FALLBACK)*\n\n*Producto:* ${producto}\n*Cliente:* ${nombres} ${apellidos}\n*Teléfono:* ${telefono}\n*Ciudad:* ${ciudad}, ${departamento}\n*Dirección:* ${direccion}\n${notas ? '*Notas:* ' + notas + '\n' : ''}\n\n*Pago contra entrega.*`;
+      window.open(`https://wa.me/573136336446?text=${encodeURIComponent(wpMessageFallback)}`, '_blank');
+      
       btnSubmit.innerHTML = originalText;
       btnSubmit.disabled = false;
     }
