@@ -1391,8 +1391,17 @@ select.form-input option {
   .navbar.scrolled { padding: 0.6rem 1.2rem; }
 
   .hero { padding: 6rem 1.2rem 3rem; }
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .combo-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  .combo-includes li {
+    text-align: left;
   }
 
   .testimonials-grid {
@@ -1423,6 +1432,8 @@ select.form-input option {
   .section-title { font-size: clamp(1.5rem, 5vw, 2rem); }
 
   .benefits-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .product-img-wrapper { height: 260px; }
 
   .combo-price-value { font-size: 2.5rem; }
 
