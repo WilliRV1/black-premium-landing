@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Premium | Carblock Dorado & Wipesblock</title>
+    <meta name="description" content="Descubre el lujo y la limpieza definitiva para tu vehículo con Carblock Dorado y Wipesblock.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+    <!-- 0. ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        ⚠️ ÚLTIMAS 12 UNIDADES CON PAGO CONTRA ENTREGA
+    </div>
+
+    <!-- 1. NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">BLACK<span>PREMIUM</span>.CO</a>
+        <a href="#pedir" class="nav-cta">Pedir ahora</a>
+    </nav>
+
+    <!-- 2. HERO -->
+    <header class="hero" id="inicio">
+        <video class="hero-video" autoplay loop muted playsinline poster="media/Fotos/sosteniendo el carblock dorado dentro de una toyota.jpeg">
+            <source src="media/Videos/botella del producto carblock dorado con animacion.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">Exclusividad y Limpieza Premium</div>
+            <h1>Tu vehículo merece <span class="text-gold">lo mejor.</span></h1>
+            <p class="hero-sub">Experimenta el aroma inconfundible del <strong>Carblock Dorado</strong> y la limpieza instantánea de <strong>Wipesblock</strong>. Diseñado para quienes exigen perfección.</p>
+            
+            <div class="hero-actions">
+                <a href="#combo" class="btn btn-primary">Ver Combo Oferta</a>
+                <a href="#pedir" class="btn btn-outline">Comprar Ahora</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">5 Meses</span>
+                    <span class="stat-label">Duración Aroma</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Satisfacción</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-value">24h</span>
+                    <span class="stat-label">Envíos Rápidos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            Descubre más
+            <div class="scroll-arrow"></div>
+        </div>
+    </header>
+
+    <!-- 3. TRUST BAR -->
+    <div class="trust-bar">
+        <div class="trust-item"><span class="trust-icon">🚚</span> Envío a toda Colombia</div>
+        <div class="trust-item"><span class="trust-icon">💵</span> Pago contra entrega</div>
+        <div class="trust-item"><span class="trust-icon">🔒</span> Compra 100% segura</div>
+        <div class="trust-item"><span class="trust-icon">⭐</span> Calidad Premium</div>
+    </div>
+
+    <!-- 4. COMBO ESTRELLA -->
+    <section class="section section-dark reveal" id="combo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Oferta Especial</span>
+                <h2 class="section-title">El Kit <span class="text-gold">Millonario</span></h2>
+                <p class="section-sub">La combinación perfecta para mantener tu vehículo con un aroma espectacular y una limpieza impecable.</p>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-glow"></div>
+                <div class="combo-content">
+                    <div>
+                        <div class="combo-badge">★ MÁS VENDIDO</div>
+                        <h3 class="combo-title">Carblock Dorado + Wipesblock</h3>
+                        <p class="combo-desc">Lleva el ambientador más exclusivo de Colombia y los paños húmedos especializados para interiores. El dúo dinámico que tu vehículo necesita.</p>
+                        
+                        <ul class="combo-includes">
+                            <li>✓ 1x Carblock Dorado (Duración 3-5 meses)</li>
+                            <li>✓ 1x Wipesblock (Limpieza profunda sin grasa)</li>
+                            <li>✓ Envío prioritario</li>
+                        </ul>
+                    </div>
+
+                    <div class="combo-right">
+                        <div class="demand-alert">
+                            <span class="pulse-dot"></span> 🔥 14 personas están mirando este combo
+                        </div>
+                        <div class="combo-price-card">
+                            <div class="combo-savings">¡Ahorras $29.900!</div>
+                            <div class="combo-price-old">$199.800</div>
+                            <div class="combo-price-value">$169.900</div>
+                            <div class="combo-price-note">Pago contra entrega en todo el país</div>
+                        </div>
+                        <button class="btn btn-gold" data-product="Combo Carblock Dorado + Wipesblock" onclick="selectProduct(this)">
+                            ¡Lo Quiero! Pedir Combo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PRODUCTOS INDIVIDUALES -->
+    <section class="section reveal" id="productos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Catálogo Premium</span>
+                <h2 class="section-title">Nuestros <span class="text-gold">Productos</span></h2>
+            </div>
+
+            <div class="products-grid">
+                <!-- Carblock -->
+                <div class="product-card">
+                    <div class="product-badge">AROMA</div>
+                    <div class="product-img-wrapper">
+                        <img src="media/Fotos/Carblock dorado en primer plano con fondo blanco.jpg" alt="Carblock Dorado" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Carblock Dorado</h3>
+                        <p class="product-desc">No es un simple ambientador. Es un estilo de vida. Aroma exclusivo que dura entre 3 y 5 meses con un uso correcto.</p>
+                        <ul class="product-features">
+                            <li>Aroma premium y duradero</li>
+                            <li>Diseño elegante y exclusivo</li>
+                            <li>Elimina olores indeseados</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price-current">$99.900</span>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%;" data-product="Carblock Dorado" onclick="selectProduct(this)">Pedir Solo Carblock</button>
+                    </div>
+                </div>
+
+                <!-- Wipesblock -->
+                <div class="product-card">
+                    <div class="product-badge">LIMPIEZA</div>
+                    <div class="product-img-wrapper">
+                        <img src="media/Fotos/wipesblock en primer plano.webp" alt="Wipesblock" class="product-img">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Wipesblock</h3>
+                        <p class="product-desc">¡Limpieza instantánea y deslumbrante! Paños húmedos que eliminan suciedad, polvo y grasa de cualquier superficie, dejando un fresco aroma.</p>
+                        <ul class="product-features">
+                            <li>No deja sensación grasosa</li>
+                            <li>Protege los plásticos y cueros</li>
+                            <li>Fragancia exclusiva a Carblock</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price-current">$99.900</span>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%;" data-product="Wipesblock" onclick="selectProduct(this)">Pedir Solo Wipesblock</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. LIFESTYLE / MEDIA -->
+    <section class="section section-dark reveal">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Estilo de Vida</span>
+                <h2 class="section-title">El Toque de <span class="text-gold">Distinción</span></h2>
+            </div>
+            
+            <div class="lifestyle-image" style="max-width: 450px; margin: 0 auto 4rem; text-align: center;">
+                <video controls autoplay loop muted playsinline style="width: 100%; border-radius: var(--r-xl); border: 2px solid var(--border-gold); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);">
+                    <source src="media/Videos/video 4 demostracion en carro mercedes cla 180.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="apply-grid">
+                <div class="apply-img" style="max-width: 350px; margin: 0 auto;">
+                    <video autoplay loop muted playsinline style="width: 100%; border-radius: var(--r-xl); border: 2px solid var(--border-gold); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+                        <source src="media/Videos/Chicas explican como aplicar el producto.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="apply-steps">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Cuidado Superior</h3>
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <h4>Limpia y Protege</h4>
+                            <p>Usa el Wipesblock para remover todo rastro de suciedad y proteger tus superficies sin dejarlas grasosas.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <h4>Aromatiza</h4>
+                            <p>Coloca tu Carblock Dorado para inundar la cabina con una fragancia a lujo y éxito.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <h4>Disfruta el Viaje</h4>
+                            <p>Vive una experiencia de manejo superior, sintiendo tu vehículo como recién salido del concesionario.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF / TESTIMONIAL VIDEO -->
+    <section class="section reveal">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Garantía de Calidad</span>
+                <h2 class="section-title">Recomendado por <span class="text-gold">Expertos</span></h2>
+                <p class="section-sub">Quienes exigen lo mejor para sus vehículos de alta gama, eligen Carblock Dorado.</p>
+            </div>
+
+            <div class="video-showcase">
+                <!-- Se usa atributo controls para que el usuario pueda activar el audio -->
+                <video class="showcase-video" controls poster="media/Fotos/sosteniendo el carblock dorado dentro de una toyota.jpeg">
+                    <source src="media/Videos/dueño de porsche recomienda carblock dorado.mov">
+                    Tu navegador no soporta el video.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS (REVIEWS) -->
+    <section class="section section-dark reveal" id="resenas">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Casos de Éxito</span>
+                <h2 class="section-title">Lo que dicen <span class="text-gold">nuestros clientes</span></h2>
+            </div>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <!-- BLOQUE ORIGINAL -->
+                    <div class="marquee-content">
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Excelente atención y envío rápido. El olor a carro millonario es real, superó mis expectativas. Lo recomiendo totalmente."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">C</div>
+                                <div>
+                                    <strong>Carlos Mejía</strong>
+                                    <span>📍 Medellín</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Los paños Wipesblock son mágicos. Me dejaron el interior de la Toyota impecable y sin esa sensación grasosa de otros productos."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">A</div>
+                                <div>
+                                    <strong>Andrés Vargas</strong>
+                                    <span>📍 Cali</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Compré el kit y es la mejor inversión para mi vehículo. Ya 2 meses y el dorado sigue oliendo igual de fuerte. ¡Brutal!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">M</div>
+                                <div>
+                                    <strong>Mauricio Roa</strong>
+                                    <span>📍 Bogotá</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- BLOQUE CLON (Para efecto infinito) -->
+                    <div class="marquee-content" aria-hidden="true">
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Excelente atención y envío rápido. El olor a carro millonario es real, superó mis expectativas. Lo recomiendo totalmente."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">C</div>
+                                <div>
+                                    <strong>Carlos Mejía</strong>
+                                    <span>📍 Medellín</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Los paños Wipesblock son mágicos. Me dejaron el interior de la Toyota impecable y sin esa sensación grasosa de otros productos."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">A</div>
+                                <div>
+                                    <strong>Andrés Vargas</strong>
+                                    <span>📍 Cali</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Compré el kit y es la mejor inversión para mi vehículo. Ya 2 meses y el dorado sigue oliendo igual de fuerte. ¡Brutal!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">M</div>
+                                <div>
+                                    <strong>Mauricio Roa</strong>
+                                    <span>📍 Bogotá</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section reveal" id="faq">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header">
+                <span class="section-label">Dudas Comunes</span>
+                <h2 class="section-title">Preguntas <span class="text-gold">Frecuentes</span></h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-btn">¿Cuánto tarda en llegar mi pedido?</button>
+                    <div class="faq-content"><p>Nuestros envíos tardan entre 1 a 3 días hábiles dependiendo de la ciudad. Despachamos de inmediato desde Cali a toda Colombia.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn">¿Debo pagar por adelantado?</button>
+                    <div class="faq-content"><p>¡No! Tienes la seguridad de pagar contra entrega. Pides hoy y pagas en efectivo únicamente cuando el paquete esté en la puerta de tu casa.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn">¿El Wipesblock daña o decolora los plásticos?</button>
+                    <div class="faq-content"><p>Para nada. Su fórmula especializada sin alcohol está diseñada para limpiar profundamente y proteger cueros, plásticos y vinilos, sin dejar sensación grasosa.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn">¿Cuánto tiempo dura el olor del Carblock Dorado?</button>
+                    <div class="faq-content"><p>Con un uso correcto, la fragancia premium del Carblock Dorado te puede durar entre 3 y 5 meses, mucho más que cualquier ambientador convencional.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FORMULARIO -->
+    <section class="section section-dark reveal" id="pedir">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Haz tu Pedido</span>
+                <h2 class="section-title">Pide Ahora, <span class="text-gold">Paga al Recibir</span></h2>
+                <p class="section-sub">Completa tus datos para enviar tu pedido por WhatsApp y coordinar la entrega.</p>
+            </div>
+
+            <div class="form-wrapper">
+                <div class="form-trust">
+                    🛡️ Tu información es segura. Pagas cuando tengas el producto en tus manos.
+                </div>
+                
+                <form id="order-form">
+                    <div class="form-group">
+                        <label>Selecciona el producto que deseas:</label>
+                        <div class="product-selector">
+                            <label class="product-option">
+                                <input type="radio" name="producto" value="Combo Carblock Dorado + Wipesblock" checked>
+                                <div class="option-card combo-option">
+                                    <div class="option-badge">🔥 MÁS VENDIDO</div>
+                                    <div class="option-title">👑 Kit Millonario</div>
+                                    <div class="option-desc">Carblock Dorado + Wipesblock</div>
+                                    <div class="option-price">$169.900</div>
+                                </div>
+                            </label>
+                            
+                            <label class="product-option">
+                                <input type="radio" name="producto" value="Carblock Dorado">
+                                <div class="option-card">
+                                    <div class="option-title">Carblock Dorado Solo</div>
+                                    <div class="option-price">$99.900</div>
+                                </div>
+                            </label>
+                            
+                            <label class="product-option">
+                                <input type="radio" name="producto" value="Wipesblock">
+                                <div class="option-card">
+                                    <div class="option-title">Wipesblock Solo</div>
+                                    <div class="option-price">$99.900</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo:</label>
+                        <input type="text" id="nombre" class="form-input" placeholder="Ej: Juan Pérez" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefono">Celular / WhatsApp:</label>
+                            <input type="tel" id="telefono" class="form-input" placeholder="Ej: 300 123 4567" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad:</label>
+                            <input type="text" id="ciudad" class="form-input" placeholder="Ej: Cali" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección exacta de entrega:</label>
+                        <input type="text" id="direccion" class="form-input" placeholder="Barrio, calle, carrera, apto..." required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Generar Pedido por WhatsApp 📲</button>
+                    
+                    <div class="form-divider">o hazlo rápido por aquí</div>
+
+                    <a href="https://wa.me/573136336446?text=Hola%2C%20quiero%20pedir%3A%20Combo%20Carblock%20Dorado%20%2B%20Wipesblock%20🚗" id="wa-order-btn" class="btn-whatsapp" target="_blank" style="text-align: center;">
+                        Chatear directo con un asesor
+                    </a>
+                </form>
+
+                <div class="success-msg" id="success-msg">
+                    <div class="success-icon">✅</div>
+                    <h3>¡Redirigiendo a WhatsApp!</h3>
+                    <p>Enviaremos el mensaje con los detalles de tu pedido. Si no se abre automáticamente, <a href="#" style="color: var(--gold); text-decoration: underline;" onclick="document.getElementById('order-form').dispatchEvent(new Event('submit'))">haz clic aquí</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-logo">BLACK<span>PREMIUM</span>.CO</div>
+        <p>Ventas y distribución autorizada.</p>
+        <p>Atención: <a href="https://wa.me/573136336446" target="_blank">313 633 6446</a> | Cali, Colombia</p>
+        <div class="footer-copy">
+            &copy; 2026 Black Premium CO. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- FLOAT BUY BUTTON -->
+    <a href="#pedir" class="float-buy" aria-label="Comprar Ahora" data-product="Carblock Dorado" onclick="selectProduct(this); return false;">
+        <img src="media/Fotos/Carblock dorado en primer plano con fondo blanco.jpg" alt="Comprar Carblock">
+        <span class="float-buy-text">Comprar<br>Ahora</span>
+    </a>
+
+    <!-- FLOAT WA -->
+    <a href="https://wa.me/573136336446" class="float-wa" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+
+    <!-- SCRIPTS -->
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Custom Script -->
+    <script src="scripts/main.js"></script>
+</body>
+</html>
