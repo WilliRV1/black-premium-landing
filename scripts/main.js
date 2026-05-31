@@ -132,23 +132,35 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const nombre = document.getElementById('nombre').value.trim();
+    const nombres = document.getElementById('nombres').value.trim();
+    const apellidos = document.getElementById('apellidos').value.trim();
     const telefono = document.getElementById('telefono').value.trim();
+    const departamento = document.getElementById('departamento').value.trim();
     const ciudad = document.getElementById('ciudad').value.trim();
     const direccion = document.getElementById('direccion').value.trim();
-    const producto = document.getElementById('producto').value;
+    const correo = document.getElementById('correo').value.trim();
+    const notas = document.getElementById('notas').value.trim();
+    const producto = document.querySelector('input[name="producto"]:checked').value;
 
-    if (!nombre || !telefono || !ciudad || !direccion || !producto) return;
+    if (!nombres || !apellidos || !telefono || !departamento || !ciudad || !direccion || !correo || !producto) return;
 
-    const msg = encodeURIComponent(
-      `🛒 *NUEVO PEDIDO — BLACK PREMIUM*\n\n` +
-      `👤 Nombre: ${nombre}\n` +
+    let msgStr = `🛒 *NUEVO PEDIDO — BLACK PREMIUM*\n\n` +
+      `👤 Nombres: ${nombres}\n` +
+      `👥 Apellidos: ${apellidos}\n` +
       `📱 Celular: ${telefono}\n` +
+      `🗺️ Departamento: ${departamento}\n` +
       `🏙️ Ciudad: ${ciudad}\n` +
       `📍 Dirección: ${direccion}\n` +
-      `📦 Producto: ${producto}\n\n` +
-      `✅ Pago contra entrega`
-    );
+      `📧 Correo: ${correo}\n` +
+      `📦 Producto: ${producto}\n\n`;
+
+    if (notas) {
+      msgStr += `📝 Notas: ${notas}\n\n`;
+    }
+
+    msgStr += `✅ Pago contra entrega`;
+
+    const msg = encodeURIComponent(msgStr);
 
     const waUrl = `https://wa.me/573136336446?text=${msg}`;
 
@@ -171,13 +183,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ──── WA BUTTON URL UPDATE ──── */
-  const productoSelect = document.getElementById('producto');
+  const productoRadios = document.querySelectorAll('input[name="producto"]');
   const waBtn = document.getElementById('wa-order-btn');
 
-  productoSelect.addEventListener('change', () => {
-    const prod = encodeURIComponent(productoSelect.value);
-    waBtn.href =
-      `https://wa.me/573136336446?text=Hola%2C%20quiero%20pedir%3A%20${prod}%20🚗`;
+  productoRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      const prod = encodeURIComponent(radio.value);
+      waBtn.href =
+        `https://wa.me/573136336446?text=Hola%2C%20quiero%20pedir%3A%20${prod}%20🚗`;
+    });
   });
 
   /* ──── SMOOTH SCROLL ──── */
