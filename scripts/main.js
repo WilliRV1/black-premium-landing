@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!nombres || !apellidos || !telefono || !departamento || !ciudad || !direccion || !correo || !producto) return;
 
-    const SCRIPT_URL = 'AQUI_PEGA_LA_URL_DE_GOOGLE_APPS_SCRIPT'; // TODO: El usuario debe pegar aquí su URL
+    const SCRIPT_URL = 'https://formspree.io/f/xaqkzbvo';
     
     const btnSubmit = document.getElementById('btn-submit');
     const originalText = btnSubmit.innerHTML;
@@ -197,12 +197,14 @@ document.addEventListener('DOMContentLoaded', () => {
       formData.append('Producto', producto);
       formData.append('Fecha', new Date().toLocaleString());
 
-      // No esperamos (await) obligatoriamente para no retrasar el WhatsApp si el internet es lento
+      // No esperamos (await) obligatoriamente para no retrasar el WhatsApp
       fetch(SCRIPT_URL, {
         method: 'POST',
         body: formData,
-        mode: 'no-cors'
-      }).catch(err => console.log('Error Sheets:', err));
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).catch(err => console.log('Error Formspree:', err));
 
       // 3. Mostrar éxito y abrir WhatsApp
       form.style.display = 'none';
