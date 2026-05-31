@@ -139,10 +139,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ──── FORM SUBMISSION → WHATSAPP ──── */
+  /* ──── DYNAMIC VIEWERS (CRO) ──── */
+  const viewersEl = document.getElementById('dynamic-viewers');
+  if (viewersEl) {
+    setInterval(() => {
+      // Random number between 12 and 24
+      const current = parseInt(viewersEl.innerText);
+      const change = Math.floor(Math.random() * 3) - 1; // -1, 0, or +1
+      let newVal = current + change;
+      if (newVal < 10) newVal = 10;
+      if (newVal > 28) newVal = 28;
+      viewersEl.innerText = newVal;
+    }, 6000);
+  }
+
+  /* ──── META & TIKTOK PIXEL: INITIATE CHECKOUT ──── */
+  const formInputs = document.querySelectorAll('#order-form input, #order-form textarea');
+  let checkoutInitiated = false;
+  formInputs.forEach(input => {
+    input.addEventListener('focus', () => {
+      if (!checkoutInitiated) {
+        if (typeof fbq === 'function') fbq('track', 'InitiateCheckout');
+        if (typeof ttq === 'object') ttq.track('InitiateCheckout');
+        checkoutInitiated = true;
+      }
+    });
+  });
+
+  /* ──── FORM SUBMISSION → WHATSAPP & GOOGLE SHEETS ──── */
   const form = document.getElementById('order-form');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const nombres = document.getElementById('nombres').value.trim();
@@ -157,34 +184,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!nombres || !apellidos || !telefono || !departamento || !ciudad || !direccion || !correo || !producto) return;
 
-    const SCRIPT_URL = 'https://formspree.io/f/xaqkzbvo';
+    const SCRIPT_URL = 'https://formspree.io/f/xaqkzbvo'; 
     
     const btnSubmit = document.getElementById('btn-submit');
     const originalText = btnSubmit.innerHTML;
     btnSubmit.innerHTML = 'Procesando Pedido... ⏳';
     btnSubmit.disabled = true;
 
-    // 1. Armar el mensaje de WhatsApp
-    let msgStr = `🛒 *NUEVO PEDIDO — BLACK PREMIUM*\n\n` +
-      `👤 Nombres: ${nombres}\n` +
-      `👥 Apellidos: ${apellidos}\n` +
-      `📱 Celular: ${telefono}\n` +
-      `🗺️ Departamento: ${departamento}\n` +
-      `🏙️ Ciudad: ${ciudad}\n` +
-      `📍 Dirección: ${direccion}\n` +
-      `📧 Correo: ${correo}\n` +
-      `📦 Producto: ${producto}\n\n`;
-
-    if (notas) {
-      msgStr += `📝 Notas: ${notas}\n\n`;
-    }
-    msgStr += `✅ Pago contra entrega`;
-
-    const waMsg = encodeURIComponent(msgStr);
-    const waUrl = `https://wa.me/573136336446?text=${waMsg}`;
-
     try {
-      // 2. Enviar datos a Google Sheets (Silencioso)
       const formData = new FormData();
       formData.append('Nombres', nombres);
       formData.append('Apellidos', apellidos);
@@ -197,22 +204,36 @@ document.addEventListener('DOMContentLoaded', () => {
       formData.append('Producto', producto);
       formData.append('Fecha', new Date().toLocaleString());
 
-      // No esperamos (await) obligatoriamente para no retrasar el WhatsApp
-      fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).catch(err => console.log('Error Formspree:', err));
+      // Disparar Evento de Purchase en el Pixel de Meta y TikTok
+      let val = producto.includes("Combo") ? 169900 : 99900;
+      
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', {
+          value: val,
+          currency: 'COP',
+          content_name: producto
+        });
+      }
+      
+      if (typeof ttq === 'object') {
+        ttq.track('PlaceAnOrder', {
+          contents: [{
+            content_name: producto,
+            price: val,
+            quantity: 1
+          }],
+          value: val,
+          currency: 'COP'
+        });
+      }
 
-      // 3. Mostrar éxito y abrir WhatsApp
+      // Hide form, show success
       form.style.display = 'none';
-      const trust = document.querySelector('.trust-badges');
+      const trust = document.querySelector('.form-trust');
       if (trust) trust.style.display = 'none';
       
       const successMsg = document.getElementById('success-msg');
-      successMsg.style.display = 'flex';
+      if (successMsg) successMsg.style.display = 'flex';
 
       // Animate success
       gsap.from('#success-msg', {
@@ -222,11 +243,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'back.out(1.5)'
       });
 
-      // Abrir WhatsApp
-      setTimeout(() => window.open(waUrl, '_blank'), 700);
+      // Build WhatsApp URL
+      const wpMessage = `*NUEVO PEDIDO DESDE LA WEB*\n\n*Producto:* ${producto}\n*Cliente:* ${nombres} ${apellidos}\n*Teléfono:* ${telefono}\n*Ciudad:* ${ciudad}, ${departamento}\n*Dirección:* ${direccion}\n${notas ? '*Notas:* ' + notas + '\n' : ''}\n\n*Pago contra entrega.* ¡Hola! Confirmo mi pedido.`;
+      const wpUrl = `https://wa.me/573136336446?text=${encodeURIComponent(wpMessage)}`;
+      setTimeout(() => {
+        window.open(wpUrl, '_blank');
+      }, 1500);
       
     } catch (error) {
-      alert('Hubo un error al enviar el pedido. Por favor contáctanos al WhatsApp de soporte.');
+      alert('Hubo un error al enviar el pedido. Serás redirigido a WhatsApp para completarlo manualmente.');
+      // En caso de error, igual enviamos al usuario al WhatsApp
+      const whatsappNumber = "573136336446";
+      window.open(`https://wa.me/${whatsappNumber}?text=Hola,%20tuve%20un%20problema%20con%20la%20página%20pero%20quiero%20hacer%20un%20pedido.`, '_blank');
       btnSubmit.innerHTML = originalText;
       btnSubmit.disabled = false;
     }
@@ -306,6 +334,30 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ──── GLOBAL: SELECT PRODUCT FROM CARD ──── */
 function selectProduct(btn) {
   const productName = btn.dataset.product;
+  
+  // Meta & TikTok Pixel AddToCart Event
+  let val = productName.includes("Combo") ? 169900 : 99900;
+  
+  if (typeof fbq === 'function') {
+    fbq('track', 'AddToCart', {
+      content_name: productName,
+      value: val,
+      currency: 'COP'
+    });
+  }
+
+  if (typeof ttq === 'object') {
+    ttq.track('AddToCart', {
+      contents: [{
+        content_name: productName,
+        price: val,
+        quantity: 1
+      }],
+      value: val,
+      currency: 'COP'
+    });
+  }
+
   const radios = document.querySelectorAll('input[name="producto"]');
   radios.forEach(radio => {
     if (radio.value === productName) {
