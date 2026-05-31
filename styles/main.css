@@ -95,11 +95,6 @@ body::after {
 }
 
 /* ──── 3. TYPOGRAPHY ──── */
-h1, h2, h3, h4, h5, h6, .nav-logo, .footer-logo, .section-title, .combo-title, .product-name {
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.03em;
-}
-
 .text-gold {
   background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
   -webkit-background-clip: text;
