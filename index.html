@@ -450,11 +450,11 @@
                         <textarea id="notas" class="form-input" placeholder="Ej: Entregar en la portería..." rows="2" style="resize: vertical;"></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit">Generar Pedido por WhatsApp 📲</button>
+                    <button type="submit" class="btn-submit" id="btn-submit">Generar Pedido por WhatsApp 📲</button>
                     
                     <div class="form-divider">o hazlo rápido por aquí</div>
 
-                    <a href="https://wa.me/573136336446?text=Hola%2C%20quiero%20pedir%3A%20Combo%20Carblock%20Dorado%20%2B%20Wipesblock%20🚗" id="wa-order-btn" class="btn-whatsapp" target="_blank" style="text-align: center;">
+                    <a href="https://wa.me/573136336446" id="wa-support-btn" class="btn-whatsapp" target="_blank" style="text-align: center;">
                         Chatear directo con un asesor
                     </a>
                 </form>
@@ -462,7 +462,7 @@
                 <div class="success-msg" id="success-msg">
                     <div class="success-icon">✅</div>
                     <h3>¡Redirigiendo a WhatsApp!</h3>
-                    <p>Enviaremos el mensaje con los detalles de tu pedido. Si no se abre automáticamente, <a href="#" style="color: var(--gold); text-decoration: underline;" onclick="document.getElementById('order-form').dispatchEvent(new Event('submit'))">haz clic aquí</a>.</p>
+                    <p>Enviaremos el mensaje con los detalles de tu pedido. Si no se abre automáticamente, <a href="#" style="color: var(--gold); text-decoration: underline;" onclick="document.getElementById('btn-submit').click()">haz clic aquí</a>.</p>
                 </div>
             </div>
         </div>

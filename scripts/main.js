@@ -157,6 +157,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!nombres || !apellidos || !telefono || !departamento || !ciudad || !direccion || !correo || !producto) return;
 
+    const SCRIPT_URL = 'AQUI_PEGA_LA_URL_DE_GOOGLE_APPS_SCRIPT'; // TODO: El usuario debe pegar aquí su URL
+    
+    const btnSubmit = document.getElementById('btn-submit');
+    const originalText = btnSubmit.innerHTML;
+    btnSubmit.innerHTML = 'Procesando Pedido... ⏳';
+    btnSubmit.disabled = true;
+
+    // 1. Armar el mensaje de WhatsApp
     let msgStr = `🛒 *NUEVO PEDIDO — BLACK PREMIUM*\n\n` +
       `👤 Nombres: ${nombres}\n` +
       `👥 Apellidos: ${apellidos}\n` +
@@ -170,42 +178,59 @@ document.addEventListener('DOMContentLoaded', () => {
     if (notas) {
       msgStr += `📝 Notas: ${notas}\n\n`;
     }
-
     msgStr += `✅ Pago contra entrega`;
 
-    const msg = encodeURIComponent(msgStr);
+    const waMsg = encodeURIComponent(msgStr);
+    const waUrl = `https://wa.me/573136336446?text=${waMsg}`;
 
-    const waUrl = `https://wa.me/573136336446?text=${msg}`;
+    try {
+      // 2. Enviar datos a Google Sheets (Silencioso)
+      const formData = new FormData();
+      formData.append('Nombres', nombres);
+      formData.append('Apellidos', apellidos);
+      formData.append('Telefono', telefono);
+      formData.append('Departamento', departamento);
+      formData.append('Ciudad', ciudad);
+      formData.append('Direccion', direccion);
+      formData.append('Correo', correo);
+      formData.append('Notas', notas);
+      formData.append('Producto', producto);
+      formData.append('Fecha', new Date().toLocaleString());
 
-    // Show success
-    form.style.display = 'none';
-    const trust = document.querySelector('.form-trust');
-    if (trust) trust.style.display = 'none';
-    document.getElementById('success-msg').style.display = 'flex';
+      // No esperamos (await) obligatoriamente para no retrasar el WhatsApp si el internet es lento
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      }).catch(err => console.log('Error Sheets:', err));
 
-    // Animate success
-    gsap.from('#success-msg', {
-      scale: 0.8,
-      opacity: 0,
-      duration: 0.5,
-      ease: 'back.out(1.5)'
-    });
+      // 3. Mostrar éxito y abrir WhatsApp
+      form.style.display = 'none';
+      const trust = document.querySelector('.trust-badges');
+      if (trust) trust.style.display = 'none';
+      
+      const successMsg = document.getElementById('success-msg');
+      successMsg.style.display = 'flex';
 
-    // Open WhatsApp
-    setTimeout(() => window.open(waUrl, '_blank'), 700);
+      // Animate success
+      gsap.from('#success-msg', {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'back.out(1.5)'
+      });
+
+      // Abrir WhatsApp
+      setTimeout(() => window.open(waUrl, '_blank'), 700);
+      
+    } catch (error) {
+      alert('Hubo un error al enviar el pedido. Por favor contáctanos al WhatsApp de soporte.');
+      btnSubmit.innerHTML = originalText;
+      btnSubmit.disabled = false;
+    }
   });
 
-  /* ──── WA BUTTON URL UPDATE ──── */
-  const productoRadios = document.querySelectorAll('input[name="producto"]');
-  const waBtn = document.getElementById('wa-order-btn');
 
-  productoRadios.forEach(radio => {
-    radio.addEventListener('change', () => {
-      const prod = encodeURIComponent(radio.value);
-      waBtn.href =
-        `https://wa.me/573136336446?text=Hola%2C%20quiero%20pedir%3A%20${prod}%20🚗`;
-    });
-  });
 
   /* ──── SMOOTH SCROLL ──── */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
