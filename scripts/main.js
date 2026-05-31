@@ -73,16 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
     ease: 'power2.out'
   });
 
-  /* ──── BENEFIT CARDS ──── */
-  gsap.from('.benefit-card', {
+  /* ──── PRODUCT CARDS ──── */
+  gsap.from('.product-card', {
     scrollTrigger: {
-      trigger: '.benefits-grid',
+      trigger: '.products-grid',
       start: 'top 82%'
     },
     y: 30,
     opacity: 0,
-    stagger: 0.08,
-    duration: 0.6,
+    stagger: 0.15,
+    duration: 0.8,
     ease: 'power2.out'
   });
 
@@ -110,6 +110,19 @@ document.addEventListener('DOMContentLoaded', () => {
     stagger: 0.15,
     duration: 0.7,
     ease: 'power2.out'
+  });
+
+  /* ──── COMBO CARD ANIMATION ──── */
+  gsap.from('.combo-card', {
+    scrollTrigger: {
+      trigger: '#combo',
+      start: 'top 80%'
+    },
+    scale: 0.95,
+    y: 40,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
   });
 
   /* ──── COMBO CARD PARALLAX GLOW ──── */
