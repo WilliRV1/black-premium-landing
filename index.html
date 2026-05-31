@@ -17,6 +17,48 @@
     <link rel="preconnect" href="https://formspree.io">
     <link rel="dns-prefetch" href="https://formspree.io">
     
+    <!-- FAQ Schema JSON-LD (SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tarda en llegar mi pedido?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nuestros envíos tardan entre 1 a 3 días hábiles dependiendo de la ciudad. Despachamos de inmediato desde Cali a toda Colombia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Debo pagar por adelantado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "¡No! Tienes la seguridad de pagar contra entrega. Pides hoy y pagas en efectivo únicamente cuando el paquete esté en la puerta de tu casa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El Wipesblock daña o decolora los plásticos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para nada. Su fórmula especializada sin alcohol está diseñada para limpiar profundamente y proteger cueros, plásticos y vinilos, sin dejar sensación grasosa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo dura el olor del Carblock Dorado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Con un uso correcto, la fragancia premium del Carblock Dorado te puede durar entre 3 y 5 meses, mucho más que cualquier ambientador convencional."
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="media/Fotos/carblock-primer-plano.jpg">
     
@@ -472,38 +514,38 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nombres">Nombres:</label>
-                            <input type="text" id="nombres" class="form-input" placeholder="Ej: Juan" required>
+                            <input type="text" id="nombres" class="form-input" placeholder="Ej: Juan" autocomplete="given-name" required>
                         </div>
                         <div class="form-group">
                             <label for="apellidos">Apellidos:</label>
-                            <input type="text" id="apellidos" class="form-input" placeholder="Ej: Pérez" required>
+                            <input type="text" id="apellidos" class="form-input" placeholder="Ej: Pérez" autocomplete="family-name" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="telefono">Celular / WhatsApp:</label>
-                        <input type="tel" id="telefono" class="form-input" placeholder="Ej: 3001234567" inputmode="numeric" pattern="[0-9]{10}" title="Por favor ingresa un número de celular de 10 dígitos (Ej: 3001234567)" required>
+                        <input type="tel" id="telefono" class="form-input" placeholder="Ej: 3001234567" inputmode="numeric" pattern="[0-9]{10}" title="Por favor ingresa un número de celular de 10 dígitos (Ej: 3001234567)" autocomplete="tel" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="departamento">Departamento:</label>
-                            <input type="text" id="departamento" class="form-input" placeholder="Ej: Valle del Cauca" required>
+                            <input type="text" id="departamento" class="form-input" placeholder="Ej: Valle del Cauca" autocomplete="address-level1" required>
                         </div>
                         <div class="form-group">
                             <label for="ciudad">Ciudad:</label>
-                            <input type="text" id="ciudad" class="form-input" placeholder="Ej: Cali" required>
+                            <input type="text" id="ciudad" class="form-input" placeholder="Ej: Cali" autocomplete="address-level2" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="direccion">Dirección y complementos:</label>
-                        <input type="text" id="direccion" class="form-input" placeholder="Barrio, calle, carrera, apto..." required>
+                        <input type="text" id="direccion" class="form-input" placeholder="Barrio, calle, carrera, apto..." autocomplete="street-address" required>
                     </div>
 
                     <div class="form-group">
                         <label for="correo">Correo electrónico:</label>
-                        <input type="email" id="correo" class="form-input" placeholder="Ej: juan@email.com" required>
+                        <input type="email" id="correo" class="form-input" placeholder="Ej: juan@email.com" autocomplete="email" required>
                     </div>
 
                     <div class="form-group">
