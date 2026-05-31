@@ -234,12 +234,17 @@ body::after {
 }
 
 .btn-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--green);
   color: var(--text);
-  padding: 0.85rem 1.8rem;
+  padding: 0.9rem 1.8rem;
   border-radius: var(--r-md);
   font-weight: 700;
   width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-whatsapp:hover {
@@ -1451,6 +1456,8 @@ select.form-input option {
 }
 
 @media (max-width: 480px) {
+  .nav-logo { font-size: 1.05rem; }
+  .nav-cta { padding: 0.4rem 0.9rem; font-size: 0.75rem; }
   .hero { padding: 5rem 1rem 8rem; min-height: 100svh; }
   .hero-badge { font-size: 0.68rem; padding: 0.3rem 0.9rem; }
   .hero-actions { flex-direction: column; align-items: center; }
