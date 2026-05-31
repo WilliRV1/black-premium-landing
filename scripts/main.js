@@ -176,6 +176,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Limpiar caracteres no numéricos del teléfono en tiempo real para cumplir con la validación de 10 dígitos
+  const phoneInput = document.getElementById('telefono');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    });
+  }
+
   /* ──── FORM SUBMISSION → WHATSAPP & GOOGLE SHEETS ──── */
   const form = document.getElementById('order-form');
 
